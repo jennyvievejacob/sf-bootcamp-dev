@@ -1,0 +1,65 @@
+<apex:page controller="ConcertBookingController" lightningStylesheets="true">
+    <apex:slds />
+    <div style="padding: 20px; background-color: #1272a3">
+        <apex:form >
+            <apex:pageBlock title="Concerts">
+                <!-- +CONCERTS -->
+                <apex:pageBlockSection >
+                    <apex:panelGroup >
+                        <apex:inputText value="{!searchConcert}"/>
+                        <apex:commandButton value="Search" action="{!doSearchConcerts}"/>
+                    </apex:panelGroup>
+                </apex:pageBlockSection>
+                <apex:pageBlockTable title="Concert List" value="{!concertWrapperList}" var="con">
+                    <apex:column headerValue="Select">
+                        <apex:inputCheckbox value="{!con.checked}"/>
+                    </apex:column>
+                    <apex:column value="{!con.concertRecord.Name}"/>
+                    <apex:column value="{!con.concertRecord.Location__c}"/>
+                    <apex:column value="{!con.concertRecord.Concert_Date__c}"/>
+                    <apex:column value="{!con.concertRecord.Available_Tickets__c}"/>
+                    <apex:column value="{!con.concertRecord.Paid_Booking__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>        
+            <!-- -CONCERTS -->
+            
+            <apex:pageBlock title="Concert Bookings">
+                <apex:pageBlockSection >
+                    <apex:panelGroup >
+                        <apex:inputText value="{!searchContactBooking}"/>
+                        <apex:commandButton value="Search" action="{!doSearchContactsBooking}"/>
+                    </apex:panelGroup>
+                </apex:pageBlockSection>
+                
+                <!-- +CONTACTS -->
+                <apex:pageBlockTable title="Contact List" value="{!contactWrapperList}" var="cont">
+                    <apex:column headerValue="Select">
+                        <apex:inputCheckbox value="{!cont.checked}"/>
+                    </apex:column>
+                    <apex:column value="{!cont.contactRecord.FirstName}"/>
+                    <apex:column value="{!cont.contactRecord.LastName}"/>
+                    <apex:column value="{!cont.contactRecord.Email}"/>
+                </apex:pageBlockTable>
+                <!-- -CONTACTS -->
+                <br/>
+                <!-- +BOOKINGS -->
+                <apex:pageBlockTable title="Booking List" value="{!bookWrapperList}" var="book">
+                    <apex:column headerValue="Select">
+                        <apex:inputCheckbox value="{!book.checked}"/>
+                    </apex:column>
+                    <apex:column value="{!book.bookRecord.Name}"/>
+                    <apex:column value="{!book.bookRecord.Concert__r.Name}"/>
+                    <apex:column value="{!book.bookRecord.Contact__r.Name}"/>
+                    <apex:column value="{!book.bookRecord.Status__c}"/>
+                </apex:pageBlockTable>
+                <!-- -BOOKINGS -->
+            </apex:pageBlock>
+            
+            <div style="padding: 20px; margin: auto; text-align: center;">
+                <apex:commandButton styleClass="slds-button slds-button_outline-brand" value="Book Ticket" action="{!bookTicket}"/>
+                <apex:commandButton styleclass="slds-button slds-button_success" value="Mark as Paid" action="{!markAsPaid}"/>
+                <apex:commandButton styleclass="slds-button slds-button_destructive" value="Cancel Booking" action="{!cancelBooking}"/>
+            </div>
+        </apex:form>  
+    </div>
+</apex:page>

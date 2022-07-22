@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global"
+                >
+    <aura:attribute type="String" name="fName" default="John"/>
+    <aura:attribute type="String" name="lName" default="Doe"/>
+    <aura:attribute type="Integer" name="num1" default="1"/>
+    <aura:attribute type="Integer" name="num2" default="2"/>
+    
+    {!v.fName + ' ' + v.lName}
+    <!--{!v.num1 + v.num2 + '\n'}-->
+    
+    <lightning:input type="text" name="input1" label="Firstname" value="{!v.fName}"/>
+    <lightning:input type="text" name="input2" label="Lastname" value="{!v.lName}"/>
+    <lightning:input type="text" readonly="true" name="output" label="Output" value="{!v.fullname}"/>
+    
+    <lightning:button variant="brand" label="Output" onclick="{!c.handleClick}"/>
+    
+</aura:component>

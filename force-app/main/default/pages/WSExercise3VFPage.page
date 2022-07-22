@@ -1,0 +1,12 @@
+<apex:page controller="WSExercise3">
+    <apex:form >
+        <p>Firstname: <apex:inputText value="{!fname}"/></p>
+        <p>Lastname: <apex:inputText value="{!lname}"/></p>
+        <p>Account: <apex:inputText value="{!accName}"/></p>
+        
+    	<p>Response: {!response}</p>
+    
+        <apex:commandButton action="{!saveAccount}" value="Save Account"/>
+    
+    </apex:form>
+</apex:page>

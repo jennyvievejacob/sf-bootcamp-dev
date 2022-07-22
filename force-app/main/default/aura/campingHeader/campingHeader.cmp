@@ -1,0 +1,3 @@
+<aura:component >
+	<h1 class='campingListHeader'>Camping List</h1>
+</aura:component>

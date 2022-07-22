@@ -1,0 +1,4 @@
+<design:component>
+    <design:attribute name="cardTitle" label="Card Title" default="Create Contact"/>
+    <design:attribute name="clearTitle" label="Clear Title" default="Clear"/>
+</design:component>

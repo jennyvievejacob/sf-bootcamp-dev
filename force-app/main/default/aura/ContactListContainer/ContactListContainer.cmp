@@ -1,0 +1,29 @@
+<aura:component controller="ContactController">   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="refreshList" event="c:RefreshListEvent2" action="{!c.onRecordSave}"/>
+    
+    <aura:attribute type="Contact[]" name="contactList"/>
+    <aura:attribute type="String" name="searchString"/>
+    <aura:attribute type="Boolean" name="showHideForm" default="false"/>
+
+    <aura:registerEvent name="showAllDetailsEvent" type="c:ShowAllDetails"/>
+    
+    <div class="container">
+        <lightning:input name="input1" label="Search Contacts" value="{!v.searchString}" onchange="{!c.getContact}"/>        
+        <br/>
+        <lightning:button variant="brand" label="Add New Contact" onclick="{!c.handleShowForm}"/>
+        <lightning:button variant="brand-outline" label="Show All" onclick="{!c.handleShowAll}"/>
+        <lightning:button variant="brand-outline" label="Hide All" onclick="{!c.handleHideAll}"/>
+        <br/>
+        <br/>
+        <aura:if isTrue="{!v.showHideForm}">
+            <c:ContactNewRecord/>
+        </aura:if>
+    </div>
+    <br/>
+    <div class="container">	
+        <aura:iteration items="{!v.contactList}" var="con">
+            <c:ContactCard con="{!con}" /><br/>
+        </aura:iteration>
+    </div>
+</aura:component>

@@ -1,0 +1,24 @@
+<apex:page controller="ContactSearchController" action="{!doInit}">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:panelGroup >
+                    <apex:inputText value="{!searchText}"/>
+                    <apex:commandButton value="Search" action="{!doSearchContacts}"/>
+                </apex:panelGroup>
+            </apex:pageBlockSection>
+            <apex:pageBlockTable title="Contact List" value="{!contactWrapperList}" var="cont">
+                <apex:column headerValue="Select">
+                    <apex:inputCheckbox value="{!cont.checked}"/>
+                </apex:column>
+                <apex:column value="{!cont.contactRecord.FirstName}"/>
+                <apex:column value="{!cont.contactRecord.LastName}"/>
+                <apex:column value="{!cont.contactRecord.Email}"/>
+            </apex:pageBlockTable>
+            
+            
+            <apex:commandButton value="Get Selected" action="{!doSearchSelectedContacts}"/>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

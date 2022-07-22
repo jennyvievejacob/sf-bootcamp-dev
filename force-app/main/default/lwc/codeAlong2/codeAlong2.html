@@ -1,0 +1,20 @@
+<template>
+    <lightning-card  title="Code Along 2">
+        <!-- <div class="slds-m-around_x-small">
+            <lightning-button label="Auto-create Contact" onclick={handleAutoCreate}></lightning-button>
+            <lightning-button label="Show Create Contact Form" onclick={handleCreateContact} if:false={showForm}></lightning-button>
+        </div> -->
+        <div>
+             <lightning-record-edit-form object-api-name={contactObject}
+             record-id={contactId}>
+                <lightning-input-field field-name={fname}></lightning-input-field>
+                <lightning-input-field field-name={lname}></lightning-input-field>
+                <lightning-input-field field-name={nickname}></lightning-input-field>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" type="submit" label="Save" onclick={handleSuccess}>
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>

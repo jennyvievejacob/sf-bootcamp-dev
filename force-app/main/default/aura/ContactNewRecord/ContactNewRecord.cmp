@@ -1,0 +1,17 @@
+<aura:component controller="ContactController">
+    <aura:attribute type="Contact" name="con" default="{}" />
+    <aura:registerEvent name="refreshList" type="c:RefreshListEvent2"/>
+    
+	<lightning:card title="Create Contact">
+        <aura:set attribute="actions">
+            <lightning:button variant="brand" label="Save" onclick="{!c.onSave}" />
+            <lightning:button variant="brand-outline" label="Cancel"/>
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <lightning:input label="First Name" value="{!v.con.FirstName}" />
+            <lightning:input label="Last Name" value="{!v.con.LastName}" />
+            <lightning:input type="email" label="Email" value="{!v.con.Email}" />
+            <lightning:input type="tel" label="phone" value="{!v.con.Phone}" />
+        </p>
+    </lightning:card>
+</aura:component>

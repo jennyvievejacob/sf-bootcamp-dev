@@ -1,0 +1,104 @@
+<template>
+    <lightning-card title="Search App">
+        <lightning-button label="Create Account" slot="actions" onclick={onClickCreateAccount} if:true={showCreateBtn}></lightning-button>
+        <lightning-button label="Back" slot="actions" onclick={onClickBack} if:true={showBackBtn}></lightning-button>
+
+        <!-- +SEARCH INPUT -->
+        <div if:true={showSearch}>
+            <lightning-input
+                name="enter-search"
+                label="Search Account"
+                type="search"
+                onchange={handleSearch}>
+            </lightning-input>
+        </div>
+        <!-- -SEARCH INPUT -->
+        
+        <!-- +CREATE ACCOUNT -->
+        <div 
+            class="slds-p-bottom_large slds-p-left_large" 
+            style="width:500px"
+            if:true={showCreateAcc}>
+            <lightning-record-edit-form 
+                object-api-name="Account"
+                onsuccess={handleSuccess}>
+                <lightning-messages></lightning-messages>
+                <lightning-input-field field-name="Name"></lightning-input-field>
+                <lightning-input-field field-name="AccountNumber"></lightning-input-field>
+                <lightning-input-field field-name="Site"></lightning-input-field>
+                <lightning-button
+                    variant="brand"
+                    type="submit"
+                    name="save"
+                    label="Create Account"
+                >
+                </lightning-button>
+            </lightning-record-edit-form>
+        </div>
+        <!-- +CREATE ACCOUNT -->
+
+        <!-- +RECORD-VIEW-FORM -->
+        <div 
+            class="slds-p-bottom_large slds-p-left_large" 
+            style="width:500px"
+            if:true={showRecordView}>
+                <lightning-record-view-form
+                    record-id={newAccId}
+                    object-api-name="Account"
+                >
+                    <div class="slds-box">
+                        <lightning-output-field field-name="Name">
+                        </lightning-output-field>
+                        <lightning-output-field field-name="AccountNumber">
+                        </lightning-output-field>
+                        <lightning-output-field field-name="Site">
+                        </lightning-output-field>
+                    </div>
+                </lightning-record-view-form>
+        </div>
+        <!-- -RECORD-VIEW-FORM -->
+
+        <!-- +TABLE -->
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label" if:true={showTable}>
+        <thead>
+            <tr class="slds-line-height_reset">
+            <th class="" scope="col">
+                <div class="slds-tru ncate">Name</div>
+            </th>
+            <th class="" scope="col">
+                <div class="slds-truncate">Account Number</div>
+            </th>
+            <th class="" scope="col">
+                <div class="slds-truncate">Site</div>
+            </th>
+            <th class="" scope="col">
+                <div class="slds-truncate">Action</div>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={accList} for:item='account'>
+            <tr class="slds-hint-parent" key={account.Id}>
+                <td>
+                    <div class="slds-truncate">{account.Name}</div>
+                </td>
+                <td>
+                    <div class="slds-truncate">{account.AccountNumber}</div>
+                </td>
+                <td>
+                    <div class="slds-truncate">{account.Site}</div>
+                </td>
+                <td>
+                    <lightning-button label="View Details" onclick={handleViewDetails} data-id={account.Id} data-name={account.Name}></lightning-button>
+                </td>
+            </tr>
+            </template>
+        </tbody>
+        </table>
+        <template if:true={showNoResult}>
+            <p>No results found</p>
+        </template>
+        <!-- -TABLE -->
+        
+    </lightning-card>
+</template>

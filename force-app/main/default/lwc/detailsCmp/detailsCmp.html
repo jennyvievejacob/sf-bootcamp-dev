@@ -1,0 +1,77 @@
+<template>
+    <lightning-card title="Update Account" icon-name="standard:record">
+        <lightning-button variant="brand"  label="Edit" slot="actions" onclick={onClickEdit} if:true={showEditButton}></lightning-button>
+        <lightning-button label="Back" slot="actions" if:true={showBackButton} onclick={onClickBack}></lightning-button>
+        
+        <!-- +SEARCH ID -->
+        <!-- <lightning-input class="slds-m-around_small" type="text" onchange={onKeyPressAccId} label="Account Record ID" if:true={showSearchBox}></lightning-input> -->
+        <!-- -SEARCH ID -->
+        
+        <!-- +EDIT FORM -->
+        <div if:true={showEditForm}>
+            <lightning-record-edit-form
+                object-api-name="Account"
+                record-id={accId}
+                onsuccess={handleSuccess}>
+                <div class="slds-p-around_x-small">
+                    <lightning-input-field field-name="Name" ></lightning-input-field> 
+                    <lightning-input-field field-name="AccountNumber"></lightning-input-field>
+                    <lightning-input-field field-name="Site" ></lightning-input-field>
+                    <lightning-button variant="brand" type="submit" name="update" label="Save"></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+        <!-- -EDIT FORM -->
+        <!-- +VIEW FORM -->
+        <div if:true={showViewForm}>
+            <lightning-record-view-form
+                object-api-name="Account"
+                record-id={accId}>
+                <lightning-output-field field-name="Name"></lightning-output-field>
+                <lightning-output-field field-name="AccountNumber"></lightning-output-field>
+                <lightning-output-field field-name="Site"></lightning-output-field>
+            </lightning-record-view-form>
+
+            <!-- +RELATED CONTACTS -->
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label" if:true={hasRecords}>
+            <thead>
+                <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-tru ncate">Name</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">Title</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">Phone</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">Email</div>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={relatedContacts} for:item='rel'>
+                <tr class="slds-hint-parent" key={rel.Id}>
+                    <td>
+                        <div class="slds-truncate">{rel.Name}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">{rel.Title}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">{rel.Phone}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">{rel.Email}</div>
+                    </td>
+                </tr>
+                </template>
+            </tbody>
+            </table>
+            <!-- -RELATED CONTACTS -->
+        </div>
+        <!-- +VIEW FORM -->
+    
+    </lightning-card>
+</template>

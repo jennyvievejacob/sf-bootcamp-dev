@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Code Along 5">
+        <lightning-input label="Value1" name="value1" oncommit={handleChange1}></lightning-input>
+        <lightning-input label="Value2" name="value2" oncommit={handleChange2}></lightning-input>
+        <lightning-input label="Value3" name="value3" oncommit={handleChange3}></lightning-input>
+        <lightning-input type="toggle" label="Show Component" name="input1" onchange={handleChange}></lightning-input>
+
+        <template if:true={showComponent}>
+            <c-code-along-5-child val1={pval1} val2={pval2} val3={pval3}></c-code-along-5-child>
+        </template>
+
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter some text" onchange={handleInputChange}></lightning-input>
+        </div>
+        <div class="slds-m-vertical_medium">
+            <p>The value of the input field is: <span class="slds-text-heading_small">{textValue.firstName}</span></p>
+        </div>
+    </lightning-card>
+</template>

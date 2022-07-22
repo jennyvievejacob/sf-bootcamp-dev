@@ -1,0 +1,23 @@
+<aura:component controller="ContactController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:attribute type="String" name="recordId"/>
+    <aura:attribute type="String" name="acctName" default="No Account Name"/>
+    <aura:attribute type="String" name="fname"/>
+    <aura:attribute type="String" name="lname"/>
+    <aura:attribute type="String" name="cardTitle"/>
+    <aura:attribute type="String" name="clearTitle"/>
+    
+    <div class="container">
+        <h1 class="title">{!v.cardTitle}</h1>
+        <br/>
+        <lightning:input type="string" disabled ="true" name="accountName" label="Account Name" value="{!v.acctName}"/>
+        <lightning:input type="string" name="input1" label="Firstname" value="{!v.fname}"/>
+        <lightning:input type="string" name="input2" label="Lastname" value="{!v.lname}"/>
+        <br/>
+        <div class="buttons">
+            <lightning:button variant="Brand" label="Save" onclick="{!c.saveContact}"/>
+            <lightning:button label="{!v.clearTitle}" title="Clear" onclick="{!c.clearFields}"/>
+        </div>
+    </div>
+</aura:component>

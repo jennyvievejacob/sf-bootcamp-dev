@@ -1,0 +1,11 @@
+<apex:page controller="DemoWebServiceOutbound" >
+    <apex:form >
+    	<p>Endpoint : {!endpoint}</p>
+    	<p>Method : {!method}</p>
+    	<p>Body : {!responsebody}</p>
+    
+        <apex:commandButton action="{!runCallOut}" value="Submit"/>
+        <apex:commandButton action="{!runGetToken}" value="Get Token"/>
+    
+    </apex:form>
+</apex:page>

@@ -1,0 +1,15 @@
+.THIS.container {
+    width: 40%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.THIS .title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.THIS .buttons{
+  	text-align: right;
+}

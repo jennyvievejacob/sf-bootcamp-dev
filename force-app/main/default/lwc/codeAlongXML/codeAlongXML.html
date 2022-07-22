@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title={cardTitle}>
+        <lightning-input
+                name="enter-search"
+                type="search"
+                onchange={handleSearch}
+        ></lightning-input>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label" if:true={hasRecords}>
+            <thead>
+              <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                  <div class="slds-truncate">Name</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                <template for:each={recordList} for:item='record'>
+                    <tr class="slds-hint-parent" key={record.Id}>
+                    <td>
+                        <div class="slds-truncate">{record.Name}</div>
+                    </td>
+                    </tr>
+                </template>
+            </tbody>
+          </table>
+    </lightning-card>
+</template>

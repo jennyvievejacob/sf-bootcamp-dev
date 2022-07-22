@@ -1,0 +1,5 @@
+<aura:component controller="ContactController" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    
+    <c:ContactListContainer></c:ContactListContainer>
+    
+</aura:component>

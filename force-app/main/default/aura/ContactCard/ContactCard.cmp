@@ -1,0 +1,23 @@
+<aura:component >
+    <aura:attribute type="Boolean" name="showDetails"/>
+    <aura:attribute type="Contact" name="con"/>
+    <aura:handler event="c:ShowAllDetails" action="{!c.handleApplicationEvent}"/>
+    <lightning:card title="{!v.con.Name}">
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.showDetails}">
+                <lightning:buttonIcon iconName="utility:hide" variant="bare" onclick="{!c.handleShowDetails}" />
+                <aura:set attribute="else">
+                    <lightning:buttonIcon iconName="utility:preview" variant="bare" onclick="{!c.handleShowDetails}" />
+                </aura:set>
+            </aura:if>
+        </aura:set>
+        <aura:if isTrue="{!v.showDetails}">
+            <p class="slds-p-horizontal_small">
+                First Name : {!v.con.FirstName} <br/>
+                Last Name : {!v.con.LastName} <br/>
+                Phone : {!v.con.Phone} <br/>
+                Email : {!v.con.Email} <br/>
+            </p>
+        </aura:if>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,41 @@
+<apex:page standardController="Account" lightningStylesheets="true" extensions="NewVFPageController">
+    <apex:slds />
+    
+    <h1>{!Account.Name}</h1><br/>
+    <p>{!Account.Website}</p>
+    <p>{!Account.Owner.Firstname}</p>
+    
+    <apex:form >
+        <apex:inputField value="{!Account.Name}" />
+        <apex:inputField value="{!Account.Website}" />
+        
+        <apex:commandButton action="{!save}" value="Update" />
+    </apex:form>
+    
+    <apex:pageBlock >
+    	<apex:pageBlockTable value="{!oppList}" var="opp">
+            <apex:column value="{!opp.Name}"/>
+            <apex:column value="{!opp.StageName}"/>
+            <apex:column value="{!opp.Amount}"/>
+            <apex:column value="{!opp.CloseDate}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+    <!--
+    <apex:detail subject="{!account.OwnerId}" relatedList="true" title="true" />
+
+    <apex:pageBlock>
+    	<apex:pageBlockTable value="{!Account.Contacts}" var="contact">
+            <apex:column value="{!contact.FirstName}"/>
+            <apex:column value="{!contact.LastName}"/>
+            <apex:column value="{!contact.Email}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+    <apex:relatedList list="Opportunities" rendered="{!Account.Phone != null}"/>
+    
+    <button class="slds-button slds-button_brand">Brand Button</button>
+
+	-->
+    
+</apex:page>

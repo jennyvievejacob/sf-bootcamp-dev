@@ -1,0 +1,12 @@
+<template>
+    <c-search-cmp 
+        if:false={showForm}
+        onselected={handleAccountSelection}>
+    </c-search-cmp>
+    <br/>
+    <c-details-cmp
+        if:true={showForm} 
+        acc-id={accId}
+        onback={showSearchCmp}>
+    </c-details-cmp>
+</template>
